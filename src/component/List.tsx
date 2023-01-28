@@ -1,21 +1,21 @@
 import styles from "../scss/Home.module.scss";
-import { useDispatch } from "react-redux";
-import { changingDone, removeListItem } from "../redux/slices/list";
+import { deleteList, updateList } from "../redux/slices/list";
+import { useAppDispatch } from "../hook";
 
 const List = (props: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const changDone = () => {
     let done = props.done;
     const obj = {
-      text: props.text,
       done: !done,
-      id: props.id,
+      _id: props._id,
+      text: props.text,
     };
+    dispatch(updateList(obj));
     //:(
-    dispatch(changingDone(obj));
   };
   const removeList = () => {
-    dispatch(removeListItem(props.id));
+    dispatch(deleteList(props._id));
   };
   return (
     <li

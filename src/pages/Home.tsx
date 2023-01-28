@@ -1,21 +1,20 @@
 import styles from "../scss/Home.module.scss";
 import List from "../component/List";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import uuid from "react-uuid";
-import { addList } from "../redux/slices/list";
+import { useSelector } from "react-redux";
+import { getList, setList } from "../redux/slices/list";
 import { useTheme } from "../hooks/use-theme";
+import { useAppDispatch } from "../hook";
 
 const Home = () => {
   const { text } = useSelector((state: any) => state.list);
   const [getText, setText] = React.useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { theme, setTheme } = useTheme();
-
-  const addText = () => {
+  const addList = async () => {
     if (getText !== "") {
-      const objList = { text: getText.trim(), done: false, id: uuid() };
-      dispatch(addList(objList));
+      const params = { text: getText.trim(), done: false };
+      dispatch(setList(params));
       setText("");
     }
   };
@@ -31,7 +30,10 @@ const Home = () => {
   const handleDarkThemeClick = () => {
     setTheme("dark");
   };
-  console.log(text.length);
+  // React.useEffect(() => {
+  //   dispatch(getList());
+  // }, []);
+  console.log(text);
   return (
     <>
       <div>
@@ -52,7 +54,7 @@ const Home = () => {
             value={getText}
             onChange={(e) => setText(e.target.value)}
           />
-          <span id="add" onClick={addText}>
+          <span id="add" onClick={addList}>
             add
           </span>
         </div>
