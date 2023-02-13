@@ -2,15 +2,17 @@ import styles from "../scss/Home.module.scss";
 import List from "../component/List";
 import React from "react";
 import { useSelector } from "react-redux";
-import { getList, setList } from "../redux/slices/list";
+import { setList, getList } from "../redux/slices/list";
 import { useTheme } from "../hooks/use-theme";
 import { useAppDispatch } from "../hook";
+import { logout } from "../redux/slices/auth";
+import { Link, Navigate } from "react-router-dom";
 
 const Home = () => {
   const { text } = useSelector((state: any) => state.list);
   const [getText, setText] = React.useState("");
   const dispatch = useAppDispatch();
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const addList = async () => {
     if (getText !== "") {
       const params = { text: getText.trim(), done: false };
@@ -30,14 +32,27 @@ const Home = () => {
   const handleDarkThemeClick = () => {
     setTheme("dark");
   };
-  // React.useEffect(() => {
-  //   dispatch(getList());
-  // }, []);
-  console.log(text);
+  const handleLogout = () => {
+    dispatch(logout());
+    window.localStorage.removeItem("token");
+  };
+  React.useEffect(() => {
+    dispatch(getList());
+  }, []);
+
+  if (!window.localStorage.getItem("token")) {
+    return <Navigate to={"/register"} />;
+  }
+
   return (
     <>
       <div>
         <div className={styles.btnGroup}>
+          <Link to={"/register"}>
+            <button onClick={handleLogout} className={styles.logout}>
+              logout
+            </button>
+          </Link>
           <button onClick={handleLightThemeClick} className={styles.btn1}>
             Light
           </button>

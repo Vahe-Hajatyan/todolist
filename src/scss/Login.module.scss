@@ -1,0 +1,106 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background: var(--background-color);
+}
+
+.container {
+  background: var(--background-color);
+}
+.screen {
+  border-radius: 25px;
+  height: 320px;
+  width: 460px;
+  background: var(--header-background-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  @media (min-width: 0px) and (max-width: 399px) {
+    width: 275px;
+  }
+  @media (min-width: 400px) and (max-width: 499px) {
+    width: 330px;
+  }
+  h2 {
+    color: var(--light-or-dark-text-color);
+    font-family: sans-serif;
+    text-align: center;
+  }
+}
+.loginBloc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  max-height: 225px;
+  input {
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 45%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    background: var(--span-or-input-background-color);
+    color: var(--span-or-input-text-color);
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--span-or-input-background-color)
+      inset;
+    -webkit-text-fill-color: var(--span-or-input-text-color) !important;
+  }
+  .loginBtn {
+    background: var(--span-or-input-background-color);
+    color: var(--span-or-input-text-color);
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-family: sans-serif;
+    cursor: pointer;
+    padding: 9px 25px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  .error {
+    color: var(--light-or-dark-text-color);
+    font-family: sans-serif;
+    font-size: 14px;
+  }
+  .link {
+    text-decoration: none;
+    p {
+      color: var(--light-or-dark-text-color);
+      font-family: sans-serif;
+      font-size: 13px;
+    }
+  }
+}
+.btnGroup {
+  float: right;
+  margin: 10px 10px 0 0;
+  .btn1 {
+    background: var(--revers-background-color);
+    color: var(--revers-li-text-color);
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    font-size: 18px;
+    border-radius: 0px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+  }
+  .btn2 {
+    background: var(--revers-background-color);
+    color: var(--revers-li-text-color);
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    font-size: 18px;
+    border-radius: 0px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+}

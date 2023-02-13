@@ -27,6 +27,11 @@ body {
     background: var(--span-or-input-background-color);
     color: var(--span-or-input-text-color);
   }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--span-or-input-background-color)
+      inset;
+    -webkit-text-fill-color: var(--span-or-input-text-color) !important;
+  }
   input:focus {
     outline: 0;
   }
@@ -51,9 +56,10 @@ body {
   margin: 0;
   padding: 0;
   li {
+    word-break: break-all;
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 12px 40px 12px 40px;
     background: var(--li-background-color);
     font-size: 18px;
     font-family: sans-serif;
@@ -125,6 +131,16 @@ body {
     border-radius: 0px;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
+  }
+  .logout {
+    background: var(--background-color);
+    cursor: pointer;
+    padding: 8px;
+    margin: 0px 10px;
+    border: none;
+    font-size: 17px;
+    border-radius: 6px;
+    color: var(--li-text-color);
   }
 }
 
